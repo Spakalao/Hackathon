@@ -23,6 +23,10 @@
 # misc
 .DS_Store
 *.pem
+*.zip
+*.tar.gz
+*.tgz
+*.log
 
 # debug
 npm-debug.log*
@@ -30,8 +34,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env
+.env.*
+!.env.example
+!.env.local.example
 
 # vercel
 .vercel
@@ -39,3 +46,28 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Duplicated directories
+/budget-travel-planner
+
+# Logs
+logs
+*.log
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache

@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
 :root {
+  /* Schéma de couleurs professionnel */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1e293b;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #f43f5e;
+  --accent: #f59e0b;
+  --gray-light: #f8fafc;
+  --gray: #e2e8f0;
+  --gray-dark: #334155;
+  
+  /* Nouvelles couleurs */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #06b6d4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-gray-light: var(--gray-light);
+  --color-gray: var(--gray);
+  --color-gray-dark: var(--gray-dark);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #e2e8f0;
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --gray-light: #1e293b;
+    --gray: #334155;
+    --gray-dark: #475569;
+    
+    /* Nouvelles couleurs pour le mode sombre */
+    --success: #059669;
+    --warning: #d97706;
+    --error: #dc2626;
+    --info: #0891b2;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom styles for input focus */
+.focus-style {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+}
+
+/* Gradient backgrounds */
+.bg-travel-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Card styles */
+.card {
+  @apply bg-white dark:bg-gray-light rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray/20;
+}
+
+/* Button styles - améliorés pour un look plus professionnel */
+.btn-primary {
+  @apply bg-primary hover:bg-primary-dark text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm;
+}
+
+.btn-secondary {
+  @apply bg-secondary hover:opacity-90 text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 shadow-sm;
+}
+
+.btn-outline {
+  @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+/* Loading styles */
+.loading-dots {
+  @apply inline-flex space-x-1;
+}
+
+.loading-dots div {
+  @apply w-2 h-2 rounded-full bg-foreground;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots div:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots div:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 
+  40% { 
+    transform: scale(1.0);
+  }
+}
+
+/* Nouvelles classes d'utilitaires pour les éléments de l'interface */
+.section-title {
+  @apply text-2xl font-bold mb-6 text-foreground;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Styles améliorés pour les champs de formulaire */
+.input-field {
+  @apply w-full px-4 py-3 border border-gray rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+}
+
+/* Styles pour les badges */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-primary/10 text-primary;
+}
+
+.badge-secondary {
+  @apply bg-secondary/10 text-secondary;
+}
+
+.badge-success {
+  @apply bg-success/10 text-success;
+}
+
+.badge-warning {
+  @apply bg-warning/10 text-warning;
+}
+
+.badge-info {
+  @apply bg-info/10 text-info;
 }
