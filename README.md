@@ -1,128 +1,166 @@
 # Budget Travel Planner
 
-Un planificateur de voyage alimenté par l'IA qui aide les utilisateurs à créer des itinéraires de voyage personnalisés en fonction de leur budget.
+An AI-powered travel planning application that helps budget-conscious travelers create optimized itineraries based on their preferences, budget constraints, and travel dates.
 
-## 🌟 Fonctionnalités
+![Budget Travel Planner](public/screenshot.png)
 
-- **Interface de conversation IA** : Décrivez vos préférences de voyage en langage naturel
-- **Optimisation intelligente du budget** : Recevez des plans de voyage personnalisés optimisés pour votre budget
-- **Itinéraires complets** : Avec hébergements, activités, transports et repas
-- **Expérience interactive** : Interface utilisateur attrayante avec animations et éléments visuels
-- **Design responsive** : Fonctionne sur ordinateurs, tablettes et appareils mobiles
+## Features
 
-## 📋 Prérequis
+- **AI-Powered Planning**: Enter your travel preferences in natural language and get personalized itineraries
+- **Budget Optimization**: Find the best travel options that fit your budget constraints
+- **Interactive Maps**: Visualize your itinerary with Google Maps integration
+- **Weather Forecasts**: Get weather information for your travel dates
+- **Flight & Accommodation Search**: Find affordable flights and accommodation options
+- **Mobile Responsive**: Fully responsive design that works on all devices
 
-- Node.js (v18.0.0 ou supérieur)
-- npm ou yarn
-- Clé API OpenAI (pour les fonctionnalités d'IA)
+## Tech Stack
 
-## 🚀 Installation
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **AI Integration**: OpenAI API
+- **Maps**: Google Maps API
+- **State Management**: React Hooks & Context API
+- **Deployment**: Vercel
 
-1. **Cloner le dépôt**
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18.17 or later
+- npm or yarn
+- OpenAI API key
+- Google Maps API key
+
+### Installation
+
+1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/budget-travel-planner.git
    cd budget-travel-planner
    ```
 
-2. **Installer les dépendances**
+2. Install dependencies:
    ```bash
    npm install
-   # ou
-   yarn install
+   # or
+   yarn
    ```
 
-3. **Configurer les variables d'environnement**
+3. Set up environment variables:
+   - Copy `.env.local.example` to `.env.local`
+   - Fill in your API keys and other configuration
    ```bash
-   # Copier le fichier d'exemple
    cp .env.local.example .env.local
-   # Ajouter votre clé API OpenAI dans le fichier .env.local
    ```
 
-4. **Démarrer le serveur de développement**
+4. Run the development server:
    ```bash
    npm run dev
-   # ou
+   # or
    yarn dev
    ```
 
-5. **Ouvrir le navigateur**
-   L'application sera disponible à l'adresse [http://localhost:3000](http://localhost:3000)
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## 🔧 Scripts disponibles
+## Deployment
 
-- **Développement** : `npm run dev` ou `yarn dev`
-  - Démarre le serveur de développement avec Turbopack pour de meilleures performances
+### Deploying to Vercel (Recommended)
 
-- **Build** : `npm run build` ou `yarn build`
-  - Compile l'application pour la production
+The easiest way to deploy the Budget Travel Planner is to use Vercel:
 
-- **Démarrage** : `npm start` ou `yarn start`
-  - Lance l'application en mode production après la compilation
+1. Create a Vercel account at [vercel.com](https://vercel.com)
+2. Install the Vercel CLI:
+   ```bash
+   npm install -g vercel
+   ```
+3. From your project directory, run:
+   ```bash
+   vercel
+   ```
+4. Follow the prompts to link your project to Vercel.
+5. Set up environment variables in the Vercel dashboard.
 
-- **Lint** : `npm run lint` ou `yarn lint`
-  - Vérifie le code selon les règles ESLint
+### Alternative Deployment Options
 
-## 📁 Structure du projet
+#### AWS Amplify
 
-```
-budget-travel-planner/
-├── app/                        # Répertoire principal de l'application Next.js
-│   ├── api/                    # Routes API
-│   ├── components/             # Composants React
-│   │   ├── ChatInterface.tsx   # Interface de conversation IA
-│   │   ├── Footer.tsx          # Composant du pied de page
-│   │   ├── Header.tsx          # Composant d'en-tête
-│   │   ├── TravelForm.tsx      # Formulaire de préférences de voyage
-│   │   └── TravelItinerary.tsx # Affichage du plan de voyage
-│   ├── globals.css             # Styles globaux (Tailwind CSS)
-│   ├── layout.tsx              # Composant de mise en page racine
-│   └── page.tsx                # Composant de page principal
-├── public/                     # Ressources statiques
-├── .env.local                  # Variables d'environnement (à créer)
-├── .env.local.example          # Exemple de variables d'environnement
-├── next.config.ts              # Configuration Next.js
-├── package.json                # Dépendances et scripts
-└── tsconfig.json               # Configuration TypeScript
-```
+1. Create an AWS account if you don't have one
+2. Install the AWS Amplify CLI:
+   ```bash
+   npm install -g @aws-amplify/cli
+   amplify configure
+   ```
+3. Initialize Amplify in your project:
+   ```bash
+   amplify init
+   ```
+4. Deploy to Amplify:
+   ```bash
+   amplify publish
+   ```
 
-## 🧠 Implémentation de l'IA
+#### Netlify
 
-L'application utilise l'API OpenAI de deux manières principales :
+1. Create a Netlify account
+2. Create a `netlify.toml` file in your project root:
+   ```toml
+   [build]
+     command = "npm run build"
+     publish = ".next"
+   
+   [[plugins]]
+     package = "@netlify/plugin-nextjs"
+   ```
+3. Deploy to Netlify:
+   ```bash
+   npx netlify-cli deploy --prod
+   ```
 
-1. **Interface de chat** : Permet aux utilisateurs d'avoir des conversations naturelles sur leurs préférences de voyage et d'obtenir des recommandations.
+## Environment Variables
 
-2. **Génération d'itinéraire** : Traite les préférences de l'utilisateur pour générer un plan de voyage complet optimisé pour leur budget.
+The following environment variables are required:
 
-## 📝 Variables d'environnement
+- `OPENAI_API_KEY`: Your OpenAI API key for AI planning features
+- `GOOGLE_MAPS_API_KEY`: Your Google Maps API key for maps features
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`: Same as above but exposed to the client
 
-Créez un fichier `.env.local` avec les variables suivantes :
+Optional environment variables:
 
-```
-# API OpenAI
-OPENAI_API_KEY=votre_clé_api_openai
+- `SKYSCANNER_API_KEY`: For flight search (if using production Skyscanner API)
+- `WEATHERAPI_KEY`: For weather forecasts (if using production Weather API)
+- `BOOKING_API_KEY`: For accommodation search (if using a production booking API)
 
-# Configuration de l'application
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
+## API Rate Limiting
 
-## ⚠️ Dépendances potentiellement inutilisées
+This application includes built-in rate limiting for API routes:
 
-Les dépendances suivantes peuvent être supprimées si elles ne sont pas utilisées dans votre projet :
+- Standard API routes: 60 requests per minute per IP
+- AI API routes: 10 requests per minute per IP
 
-- **@types/react-datepicker** et **react-datepicker** : Si vous n'utilisez pas de sélecteur de date personnalisé
-- **ai** : Peut être supprimé si vous utilisez directement l'API OpenAI sans cette bibliothèque
+These limits can be adjusted in `app/middleware.ts`.
 
-Pour supprimer une dépendance inutilisée :
-```bash
-npm uninstall nom_de_la_dépendance
-# ou
-yarn remove nom_de_la_dépendance
-```
+## Caching Strategy
 
-## 📋 Note concernant la duplication de répertoire
+To optimize performance and reduce API calls:
 
-Il semble qu'il y ait un dossier `budget-travel-planner` à l'intérieur du dossier principal du projet. Cette structure dupliquée n'est pas nécessaire et peut entraîner des erreurs. Nous avons ajouté ce dossier dans le `.gitignore` pour éviter qu'il ne soit versionné.
+- API responses are cached in memory with configurable TTL
+- Weather and location data are cached for longer periods
+- AI responses are cached where appropriate
 
-## 👥 Fait par
-ENSI STUDENTS
-# hackaton
+Cache settings can be adjusted in `app/utils/apiCache.ts`.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- OpenAI for their powerful AI models
+- Google for their Maps API
+- Next.js team for the amazing framework
+- All the contributors who have helped with this project

@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import TravelForm from './components/TravelForm';
 import TravelItinerary from './components/TravelItinerary';
 import ChatInterface from './components/ChatInterface';
+import TravelDashboard from './components/TravelDashboard';
 import { ArrowRightIcon, LightBulbIcon, CurrencyDollarIcon, MapIcon, CalendarIcon } from '@heroicons/react/24/outline';
 
 // Sample data for development - in production, this would come from API
@@ -161,7 +162,8 @@ enum AppStage {
   CHAT = 'chat',
   FORM = 'form',
   LOADING = 'loading',
-  RESULT = 'result'
+  RESULT = 'result',
+  DASHBOARD = 'dashboard'
 }
 
 export default function Home() {
@@ -208,6 +210,8 @@ export default function Home() {
         return '/?stage=loading';
       case AppStage.RESULT:
         return '/?stage=result';
+      case AppStage.DASHBOARD:
+        return '/?stage=dashboard';
       default:
         return '/';
     }
@@ -234,6 +238,10 @@ export default function Home() {
   
   const handleStartPlanning = () => {
     updateAppStage(AppStage.CHAT);
+  };
+  
+  const handleStartDashboard = () => {
+    updateAppStage(AppStage.DASHBOARD);
   };
   
   const handleChatFinished = () => {
@@ -291,6 +299,9 @@ export default function Home() {
           if (params.get('alternatives') === 'true') {
             setShowAlternatives(true);
           }
+          break;
+        case 'dashboard':
+          setAppStage(AppStage.DASHBOARD);
           break;
         default:
           setAppStage(AppStage.WELCOME);
@@ -381,6 +392,22 @@ export default function Home() {
               </button>
             </div>
         </div>
+        )}
+        
+        {appStage === AppStage.DASHBOARD && (
+          <div className="md:mt-0">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold">Budget Travel Dashboard</h2>
+              <button 
+                onClick={() => updateAppStage(AppStage.WELCOME)}
+                className="btn-outline btn-sm"
+              >
+                Back to Home
+              </button>
+            </div>
+            
+            <TravelDashboard />
+          </div>
         )}
       </main>
       
